@@ -1,0 +1,24 @@
+title: Use Icacls to modify access control list
+id: 60fb14cc-ff01-458b-880c-8542437a4fcc
+status: experimental
+description: Detect use of icacls to modify access control list, used by ransomware stealer
+author: SIMKRA
+references:
+- https://app.any.run/tasks/a38891d7-13aa-4798-ae75-ef7995d73988
+date: 2024/05/09
+tags:
+- attack.defense_evasion
+- attack.t1222
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_icacls:
+  - Image|endswith: \icacls.exe
+  selection_cmd:
+    CommandLine|contains:
+    - 'icacls . /grant Everyone:F /T /C /Q'
+  condition: all of selection*
+falsepositives:
+- not known
+level: medium

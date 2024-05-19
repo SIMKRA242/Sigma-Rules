@@ -1,0 +1,23 @@
+title: Winrar.exe connect to unusual port 
+id: 6c92bd71-f158-4c57-a05c-0f01545673fa
+status: experimental
+description: Detects an unusual connection via Winrar
+references:
+- https://app.any.run/tasks/118d5c19-b09b-4874-99b5-d4144bfb8ecf
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \Winrar.exe
+    DestinationPort:
+    - 4444
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

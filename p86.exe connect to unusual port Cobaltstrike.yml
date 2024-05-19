@@ -1,0 +1,22 @@
+title: p86.exe connect to unusual port Cobaltstrike
+id: cf300c6a-e7f6-4604-a381-b6984936a1fa
+status: experimental
+description: Detects an unusual connection via p86.exe for Cobaltstrike
+references:
+- https://app.any.run/tasks/f7ce848b-6725-48b2-bd4b-7cdcaea3e0c4
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \p86.exe
+     - 88
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

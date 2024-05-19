@@ -1,0 +1,23 @@
+title: Xclient.exe connect to unusual port
+id: 7c695c7a-8c1a-49f0-9e63-be6efdc722ce
+status: experimental
+description: Detects an unusual connection with XClient.exe for xworm and ransomware precursor
+references:
+- https://app.any.run/tasks/79cc3271-c396-4705-ac4d-82df1e8bc66e
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \XClient.exe
+    DestinationPort:
+    - 46656
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

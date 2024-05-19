@@ -1,0 +1,24 @@
+title: jawav.exe connect to unusual port
+id: 3d3ceaae-2af6-4ddd-8d55-d7baf45c17e4
+status: experimental
+description: Detects an unusual connection with java like the rat adwind
+references:
+- https://app.any.run/tasks/8cc657ee-cc98-4dc3-88b8-6be8e3e3239f
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \javaw.exe
+    DestinationPort:
+    - 9090
+    - 16769
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

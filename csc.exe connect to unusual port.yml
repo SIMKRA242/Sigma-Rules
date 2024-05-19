@@ -1,0 +1,24 @@
+title: csc.exe connect to unusual port 
+id: bf766a07-fe54-458d-b48f-c45bab0e3c27
+status: experimental
+description: Detects an unusual connection with csc.exe to asyncrat and other rats
+references:
+- https://app.any.run/tasks/6d1a1dd8-d149-4ef2-a31f-ae662b77d0ea
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \csc.exe
+     - 7098
+     - 35999
+     - 1997
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

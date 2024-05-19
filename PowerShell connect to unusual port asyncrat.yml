@@ -1,0 +1,24 @@
+title: PowerShell connect to unusual port asyncrat
+id: fb40c2f7-7880-416c-9484-b4375c29b5aa
+status: experimental
+description: Detects an unusual connection via PowerShell as IOC asyncrat
+references:
+- https://app.any.run/tasks/467a1c6b-f4ae-4ec1-bb17-f9a3310538f7
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \AnyDesk.exe
+     - 4449
+     - 7287
+     - 5050
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

@@ -1,0 +1,23 @@
+title: wab.exe connect to unusual port
+id: 6fb4e49e-f7b6-4a19-8c71-bbd496826a22
+status: experimental
+description: Detects an unusual connection with wab.exe for smtp evasion
+references:
+- https://app.any.run/tasks/3c75ffc1-fe1a-4551-abcd-a708fb67c53e
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \wab.exe
+    DestinationPort:
+    - 26
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

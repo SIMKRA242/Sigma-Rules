@@ -1,0 +1,22 @@
+title: AnyDesk connect to unusual port 
+id: 7737470e-fc31-42cf-9b7c-561318f7e5c3
+status: experimental
+description: Detects an unusual connection with AnyDesk
+references:
+- https://app.any.run/tasks/29ea08bd-d969-490a-87c3-dae99050e08f
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \AnyDesk.exe
+     - 6568
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

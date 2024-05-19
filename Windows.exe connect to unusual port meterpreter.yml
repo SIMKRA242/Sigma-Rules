@@ -1,0 +1,24 @@
+title: Windows.exe connect to unusual port meterpreter
+id: a497ecbb-a669-4700-b026-5a02d203d0c4
+status: experimental
+description: Detects an unusual connection with metasploit, meterpreter payload
+references:
+- https://app.any.run/tasks/39d7e555-3bff-4816-bf95-6e6878b322a0
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \windows.exe
+    DestinationPort:
+    - 12413
+    - 19450
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

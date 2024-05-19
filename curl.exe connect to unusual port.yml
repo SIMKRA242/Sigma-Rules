@@ -1,0 +1,22 @@
+title: curl.exe connect to unusual port 
+id: 7e6f4efb-ad0a-4cb9-95b4-5242595e9b4b
+status: experimental
+description: Detects an unusual connection with curl.exe to ateraagent
+references:
+- https://app.any.run/tasks/595942a9-64f2-440f-9ae2-66e630aae175
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \curl.exe
+     - 9380
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

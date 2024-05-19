@@ -1,0 +1,22 @@
+title: PUA advanced_port_scanner connect to unusual port 
+id: 02c6a80f-a00a-472d-9c4b-d8170c9b4d1d
+status: experimental
+description: Detects an unusual connection with advanced port scanner as PUA
+references:
+- https://app.any.run/tasks/4710896b-0336-4a8a-9613-5b3a01bdb9e6
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \advanced_port_scanner.exe
+     - 702
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

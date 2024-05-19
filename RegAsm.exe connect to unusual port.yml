@@ -1,0 +1,27 @@
+title: RegAsm.exe connect to unusual port
+id: 9c92f6b8-2b48-46dc-873c-24478e56b768
+status: experimental
+description: Detects an unusual connection with RegAsm.exe for xworm, remocos, asyncrat etc.
+references:
+- https://app.any.run/tasks/8439218f-6b66-4f08-a7f3-22895453a477
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|contains: :\Windows\Microsoft.NET\
+    Image|endswith: \RegAsm.exe
+    DestinationPort:
+    - 8000
+    - 8100
+    - 8500
+    - 4343
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

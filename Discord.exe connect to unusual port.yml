@@ -1,0 +1,23 @@
+title: Discord.exe connect to unusual port 
+id: 5f9e8a85-80ca-42d8-b356-06a9e1184a29
+status: experimental
+description: Detects an unusual connection to Discord for several rats
+references:
+- https://app.any.run/tasks/6b583f27-d849-4a34-bd8e-7023b494dd3d
+author: SIMKRA
+date: 2024/05/09
+tags:
+- attack.commandandcontrol
+- attack.t1571
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: \Discord.exe
+    DestinationPort:
+    - 16821
+  condition: selection 
+falsepositives:
+- Unknown
+level: high

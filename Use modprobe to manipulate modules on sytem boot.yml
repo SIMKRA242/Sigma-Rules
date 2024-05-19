@@ -1,0 +1,28 @@
+title: Use modprobe to manipulate modules on sytem boot
+id: e6b1bb30-6a6f-4c9e-84d3-37d73061f967
+status: experimental
+description: Detect manipulating modules likely to execute programs on system boot
+author: SIMKRA
+references:
+- hhttps://app.any.run/tasks/8b1520a5-f9a0-4b36-800f-486a34fda43e
+date: 2024/05/09
+tags:
+- attack.persistence
+- attack.T1547.006
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection_icacls:
+  - Image|endswith: \modprobe
+  selection_cmd:
+    CommandLine|contains:
+    - '/sbin/modprobe -q -- binfmt-464c'
+    - '/sbin/modprobe -q -- eth0'
+    - '/sbin/modprobe -q -- netdev-ens33'
+    - '/sbin/modprobe -q -- netdev-eth0'
+    - '/sbin/modprobe -q -- ens33'
+  condition: all of selection*
+falsepositives:
+- not known
+level: medium
